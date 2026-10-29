@@ -4546,6 +4546,9 @@ CMDs[#CMDs + 1] = {NAME = 'flyspeed [num]', DESC = 'Set fly speed (default is 20
 CMDs[#CMDs + 1] = {NAME = 'vehiclefly / vfly [speed]', DESC = 'Makes you fly in a vehicle'}
 CMDs[#CMDs + 1] = {NAME = 'unvehiclefly / unvfly', DESC = 'Disables vehicle fly'}
 CMDs[#CMDs + 1] = {NAME = 'vehicleflyspeed  / vflyspeed [num]', DESC = 'Set vehicle fly speed'}
+CMDs[#CMDs + 1] = {NAME = 'velocityfly / velfly [speed]', DESC = 'Makes you fly using velocity (bypasses some anticheats, works on mobile)'}
+CMDs[#CMDs + 1] = {NAME = 'unvelocityfly / unvelfly', DESC = 'Disables velocity fly'}
+CMDs[#CMDs + 1] = {NAME = 'velocityflyspeed / velflyspeed [num]', DESC = 'Sets velocity fly speed (default is 50)'}
 CMDs[#CMDs + 1] = {NAME = 'cframefly / cfly [speed]', DESC = 'Makes you fly, bypassing some anti cheats (works on mobile)'}
 CMDs[#CMDs + 1] = {NAME = 'uncframefly / uncfly', DESC = 'Disables cfly'}
 CMDs[#CMDs + 1] = {NAME = 'cframeflyspeed  / cflyspeed [num]', DESC = 'Sets cfly speed'}
@@ -7337,6 +7340,72 @@ addcmd('togglefly',{},function(args, speaker)
 		if not IsOnMobile then NOFLY() else unmobilefly(speaker) end
 	else
 		if not IsOnMobile then sFLY() else mobilefly(speaker) end
+	end
+end)
+
+local velflytoggle = false
+local velflyspeed = 50
+local velflycon: RBXScriptConnection
+
+local function unvelfly(silent)
+	velflytoggle = false
+	if velflycon then velflycon:Disconnect() velflycon = nil end
+	execCmd('unnoclip nonotify')
+	local char = Players.LocalPlayer.Character
+	local hum = char and char:FindFirstChildOfClass("Humanoid")
+	if hum then hum:ChangeState(Enum.HumanoidStateType.Running) end
+	if not silent then notify("Velocity Fly", "Disabled") end
+end
+
+local function velfly(speaker)
+	velflytoggle = true
+
+	execCmd('noclip nonotify')
+
+	velflycon = RunService.PostSimulation:Connect(function(dt)
+		if not velflytoggle then return end
+		local char = speaker.Character
+		if not char then return end
+		local hrp = char:FindFirstChild("HumanoidRootPart")
+		local hum = char:FindFirstChildOfClass("Humanoid")
+		if not hrp or not hum then return end
+
+		hum:ChangeState(Enum.HumanoidStateType.Physics)
+
+		local cam = workspace.CurrentCamera
+		local dir = hum.MoveDirection
+		local vel = Vector3.zero
+
+		if dir.Magnitude > 0.001 then
+			local cf = cam.CFrame
+			vel = (cf.RightVector * dir:Dot(cf.RightVector) + cf.LookVector * dir:Dot(cf.LookVector))
+			if vel.Magnitude > 0.001 then vel = vel.Unit * velFlySpeed end
+		end
+
+		hrp.Velocity = vel + Vector3.new(0, workspace.Gravity * dt, 0)
+	end)
+
+	speaker.CharacterAdded:Once(function()
+		task.wait(0.25)
+		unvelfly()
+	end)
+end
+
+addcmd('velocityfly', {'velfly'}, function(args, speaker)
+	if args[1] and isNumber(args[1]) then velflyspeed = tonumber(args[1]) end
+	if velflytoggle then unvelfly() return end
+	velfly(speaker)
+	notify("Velocity Fly", "Enabled - Speed: " .. velflyspeed)
+end)
+
+addcmd('unvelocityfly', {'unvelfly'}, function(args, speaker)
+	if velflytoggle then unvelfly() end
+end)
+
+addcmd('velocityflyspeed', {'velflyspeed'}, function(args, speaker)
+	if isNumber(args[1]) then
+		velflyspeed = tonumber(args[1])
+		notify("Velocity Fly", "Speed set to " .. velflyspeed)
 	end
 end)
 
