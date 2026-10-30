@@ -7413,42 +7413,51 @@ addcmd('velocityflyspeed', {'velflyspeed'}, function(args, speaker)
 end)
 
 CFspeed = 50
+
 addcmd('cframefly', {'cfly'}, function(args, speaker)
 	if args[1] and isNumber(args[1]) then
-		CFspeed = args[1]
+		CFspeed = tonumber(args[1])
 	end
 
-	-- Full credit to peyton#9148 (apeyton)
-	speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
-	local Head = speaker.Character:WaitForChild("Head")
-	if CFloop then CFloop:Disconnect() end
-	CFloop = RunService.Heartbeat:Connect(function(deltaTime)
-		local moveDirection = speaker.Character:FindFirstChildOfClass('Humanoid').MoveDirection * (CFspeed * deltaTime)
-		local headCFrame = Head.CFrame
-		local camera = workspace.CurrentCamera
-		local cameraCFrame = camera.CFrame
-		local cameraOffset = headCFrame:ToObjectSpace(cameraCFrame).Position
-		cameraCFrame = cameraCFrame * CFrame.new(-cameraOffset.X, -cameraOffset.Y, -cameraOffset.Z + 1)
-		local cameraPosition = cameraCFrame.Position
-		local headPosition = headCFrame.Position
+	local char = speaker.Character
+	if not char then return end
+	local hum = char:FindFirstChildOfClass('Humanoid')
+	local hrp = char:FindFirstChild('HumanoidRootPart')
+	if not hum or not hrp then return end
 
-		local objectSpaceVelocity = CFrame.new(cameraPosition, Vector3.new(headPosition.X, cameraPosition.Y, headPosition.Z)):VectorToObjectSpace(moveDirection)
-		Head.CFrame = CFrame.new(headPosition) * (cameraCFrame - cameraPosition) * CFrame.new(objectSpaceVelocity)
+	if CFloop then CFloop:Disconnect() end
+
+	hum.PlatformStand = true
+
+	local flyPos = hrp.Position
+	local rot = hrp.CFrame - hrp.CFrame.Position
+
+	CFloop = RunService.RenderStepped:Connect(function(dt)
+		if not char.Parent or not hrp.Parent then
+			if CFloop then CFloop:Disconnect() CFloop = nil end
+			return
+		end
+
+		hrp.AssemblyLinearVelocity  = Vector3.zero
+		hrp.AssemblyAngularVelocity = Vector3.zero
+		flyPos = flyPos + hum.MoveDirection * CFspeed * dt
+
+		hrp.CFrame = CFrame.new(flyPos) * rot
 	end)
 end)
 
-addcmd('uncframefly',{'uncfly'},function(args, speaker)
-	if CFloop then
-		CFloop:Disconnect()
-		speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = false
-		local Head = speaker.Character:WaitForChild("Head")
-		Head.Anchored = false
-	end
+addcmd('uncframefly', {'uncfly'}, function(args, speaker)
+	if CFloop then CFloop:Disconnect() CFloop = nil end
+
+	local char = speaker.Character
+	if not char then return end
+	local hum = char:FindFirstChildOfClass('Humanoid')
+	if hum then hum.PlatformStand = false end
 end)
 
-addcmd('cframeflyspeed',{'cflyspeed'},function(args, speaker)
+addcmd('cframeflyspeed', {'cflyspeed'}, function(args, speaker)
 	if isNumber(args[1]) then
-		CFspeed = args[1]
+		CFspeed = tonumber(args[1])
 	end
 end)
 
