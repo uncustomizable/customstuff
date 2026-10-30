@@ -7344,7 +7344,7 @@ addcmd('togglefly',{},function(args, speaker)
 end)
 
 local velflytoggle = false
-local velflyspeed = 50
+local velflyspeed = 1
 local velflycon: RBXScriptConnection
 
 local function unvelfly(silent)
@@ -7379,7 +7379,10 @@ local function velfly(speaker)
 		if dir.Magnitude > 0.001 then
 			local cf = cam.CFrame
 			vel = (cf.RightVector * dir:Dot(cf.RightVector) + cf.LookVector * dir:Dot(cf.LookVector))
-			if vel.Magnitude > 0.001 then vel = vel.Unit * velflyspeed end
+			
+			if vel.Magnitude > 0.001 then
+				vel = vel.Unit * velflyspeed * 100
+			end
 		end
 
 		hrp.Velocity = vel + Vector3.new(0, workspace.Gravity * dt, 0)
@@ -7418,7 +7421,6 @@ addcmd('cframefly', {'cfly'}, function(args, speaker)
 	-- Full credit to peyton#9148 (apeyton)
 	speaker.Character:FindFirstChildOfClass('Humanoid').PlatformStand = true
 	local Head = speaker.Character:WaitForChild("Head")
-	Head.Anchored = true
 	if CFloop then CFloop:Disconnect() end
 	CFloop = RunService.Heartbeat:Connect(function(deltaTime)
 		local moveDirection = speaker.Character:FindFirstChildOfClass('Humanoid').MoveDirection * (CFspeed * deltaTime)
