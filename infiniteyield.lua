@@ -303,29 +303,29 @@ end
 PARENT = nil
 MAX_DISPLAY_ORDER = 1.7976931348623157e308
 if gethui then
-    local Main = Instance.new("ScreenGui")
-    Main.Name = randomString()
-    Main.ResetOnSpawn = false
-    Main.DisplayOrder = MAX_DISPLAY_ORDER
-    Main.Parent = gethui()
-    PARENT = Main
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	Main.ResetOnSpawn = false
+	Main.DisplayOrder = MAX_DISPLAY_ORDER
+	Main.Parent = gethui()
+	PARENT = Main
 elseif (not is_sirhurt_closure) and syn_protect_gui then
-    local Main = Instance.new("ScreenGui")
-    Main.Name = randomString()
-    Main.ResetOnSpawn = false
-    Main.DisplayOrder = MAX_DISPLAY_ORDER
-    syn_protect_gui(Main)
-    Main.Parent = COREGUI
-    PARENT = Main
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	Main.ResetOnSpawn = false
+	Main.DisplayOrder = MAX_DISPLAY_ORDER
+	syn_protect_gui(Main)
+	Main.Parent = COREGUI
+	PARENT = Main
 elseif COREGUI:FindFirstChild("RobloxGui") then
-    PARENT = COREGUI.RobloxGui
+	PARENT = COREGUI.RobloxGui
 else
-    local Main = Instance.new("ScreenGui")
-    Main.Name = randomString()
-    Main.ResetOnSpawn = false
-    Main.DisplayOrder = MAX_DISPLAY_ORDER
-    Main.Parent = COREGUI
-    PARENT = Main
+	local Main = Instance.new("ScreenGui")
+	Main.Name = randomString()
+	Main.ResetOnSpawn = false
+	Main.DisplayOrder = MAX_DISPLAY_ORDER
+	Main.Parent = COREGUI
+	PARENT = Main
 end
 
 shade1 = {}
@@ -2102,12 +2102,12 @@ function r15(plr)
 end
 
 function breakVelocity()
-    local V3 = Vector3.new(0, 0, 0)
-    for _, v in ipairs(Players.LocalPlayer.Character:GetDescendants()) do
-        if v:IsA("BasePart") then
-            v.Velocity, v.RotVelocity = V3, V3
-        end
-    end
+	local V3 = Vector3.new(0, 0, 0)
+	for _, v in ipairs(Players.LocalPlayer.Character:GetDescendants()) do
+		if v:IsA("BasePart") then
+			v.Velocity, v.RotVelocity = V3, V3
+		end
+	end
 end
 
 function toClipboard(txt)
@@ -3332,56 +3332,56 @@ function CreateLabel(Name, Text)
 end
 
 function CreateJoinLabel(player, userId)
-    if #scroll_3:GetChildren() >= 2546 then
-        scroll_3:ClearAllChildren()
-    end
-    local infoFrame = Instance.new("Frame")
-    local info1 = Instance.new("TextLabel")
-    local info2 = Instance.new("TextLabel")
-    local ImageLabel_3 = Instance.new("ImageLabel")
-    infoFrame.Name = randomString()
-    infoFrame.Parent = scroll_3
-    infoFrame.BackgroundColor3 = Color3.new(1, 1, 1)
-    infoFrame.BackgroundTransparency = 1
-    infoFrame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
-    infoFrame.Size = UDim2.new(1, 0, 0, 50)
-    info1.Name = randomString()
-    info1.Parent = infoFrame
-    info1.BackgroundTransparency = 1
-    info1.BorderSizePixel = 0
-    info1.Position = UDim2.new(0, 45, 0, 0)
-    info1.Size = UDim2.new(0, 135, 1, 0)
-    info1.ZIndex = 10
-    info1.Font = Enum.Font.SourceSans
-    info1.FontSize = Enum.FontSize.Size14
-    info1.Text = "Username: " .. player.Name .. "\nJoined Server: " .. Time()
-    info1.TextColor3 = Color3.new(1, 1, 1)
-    info1.TextWrapped = true
-    info1.TextXAlignment = Enum.TextXAlignment.Left
-    info2.Name = randomString()
-    info2.Parent = infoFrame
-    info2.BackgroundTransparency = 1
-    info2.BorderSizePixel = 0
-    info2.Position = UDim2.new(0, 185, 0, 0)
-    info2.Size = UDim2.new(0, 140, 1, -5)
-    info2.ZIndex = 10
-    info2.Font = Enum.Font.SourceSans
-    info2.FontSize = Enum.FontSize.Size14
-    info2.Text = "User ID: " .. userId .. "\nAccount Age: " .. player.AccountAge .. "\nJoined Roblox: Loading..."
-    info2.TextColor3 = Color3.new(1, 1, 1)
-    info2.TextWrapped = true
-    info2.TextXAlignment = Enum.TextXAlignment.Left
-    info2.TextYAlignment = Enum.TextYAlignment.Center
-    ImageLabel_3.Parent = infoFrame
-    ImageLabel_3.BackgroundTransparency = 1
-    ImageLabel_3.BorderSizePixel = 0
-    ImageLabel_3.Size = UDim2.new(0, 45, 1, 0)
-    ImageLabel_3.Image = Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.AvatarThumbnail, Enum.ThumbnailSize.Size420x420)
-    scroll_3.CanvasSize = UDim2.new(0, 0, 0, listlayout.AbsoluteContentSize.Y)
-    scroll_3.CanvasPosition = Vector2.new(0, scroll_2.CanvasPosition.Y + infoFrame.AbsoluteSize.Y)
-    local date = os.date("!%Y-%m-%d", os.time() - (player.AccountAge * 86400))
-    local splitDates = string.split(date, "-")
-    info2.Text = string.gsub(info2.Text, "Loading...", splitDates[2] .. "/" .. splitDates[3] .. "/" .. splitDates[1])
+	if #scroll_3:GetChildren() >= 2546 then
+		scroll_3:ClearAllChildren()
+	end
+	local infoFrame = Instance.new("Frame")
+	local info1 = Instance.new("TextLabel")
+	local info2 = Instance.new("TextLabel")
+	local ImageLabel_3 = Instance.new("ImageLabel")
+	infoFrame.Name = randomString()
+	infoFrame.Parent = scroll_3
+	infoFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+	infoFrame.BackgroundTransparency = 1
+	infoFrame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+	infoFrame.Size = UDim2.new(1, 0, 0, 50)
+	info1.Name = randomString()
+	info1.Parent = infoFrame
+	info1.BackgroundTransparency = 1
+	info1.BorderSizePixel = 0
+	info1.Position = UDim2.new(0, 45, 0, 0)
+	info1.Size = UDim2.new(0, 135, 1, 0)
+	info1.ZIndex = 10
+	info1.Font = Enum.Font.SourceSans
+	info1.FontSize = Enum.FontSize.Size14
+	info1.Text = "Username: " .. player.Name .. "\nJoined Server: " .. Time()
+	info1.TextColor3 = Color3.new(1, 1, 1)
+	info1.TextWrapped = true
+	info1.TextXAlignment = Enum.TextXAlignment.Left
+	info2.Name = randomString()
+	info2.Parent = infoFrame
+	info2.BackgroundTransparency = 1
+	info2.BorderSizePixel = 0
+	info2.Position = UDim2.new(0, 185, 0, 0)
+	info2.Size = UDim2.new(0, 140, 1, -5)
+	info2.ZIndex = 10
+	info2.Font = Enum.Font.SourceSans
+	info2.FontSize = Enum.FontSize.Size14
+	info2.Text = "User ID: " .. userId .. "\nAccount Age: " .. player.AccountAge .. "\nJoined Roblox: Loading..."
+	info2.TextColor3 = Color3.new(1, 1, 1)
+	info2.TextWrapped = true
+	info2.TextXAlignment = Enum.TextXAlignment.Left
+	info2.TextYAlignment = Enum.TextYAlignment.Center
+	ImageLabel_3.Parent = infoFrame
+	ImageLabel_3.BackgroundTransparency = 1
+	ImageLabel_3.BorderSizePixel = 0
+	ImageLabel_3.Size = UDim2.new(0, 45, 1, 0)
+	ImageLabel_3.Image = Players:GetUserThumbnailAsync(userId, Enum.ThumbnailType.AvatarThumbnail, Enum.ThumbnailSize.Size420x420)
+	scroll_3.CanvasSize = UDim2.new(0, 0, 0, listlayout.AbsoluteContentSize.Y)
+	scroll_3.CanvasPosition = Vector2.new(0, scroll_2.CanvasPosition.Y + infoFrame.AbsoluteSize.Y)
+	local date = os.date("!%Y-%m-%d", os.time() - (player.AccountAge * 86400))
+	local splitDates = string.split(date, "-")
+	info2.Text = string.gsub(info2.Text, "Loading...", splitDates[2] .. "/" .. splitDates[3] .. "/" .. splitDates[1])
 end
 
 IYMouse.KeyDown:Connect(function(Key)
@@ -4990,13 +4990,13 @@ end
 
 function respawn(plr)
 	if invisRunning then TurnVisible() end
-    local char = plr.Character
-    local hum = char:FindFirstChildWhichIsA("Humanoid")
+	local char = plr.Character
+	local hum = char:FindFirstChildWhichIsA("Humanoid")
 	local archive = workspace.FallenPartsDestroyHeight
 	local camType = workspace.CurrentCamera.CameraType
 	workspace.CurrentCamera.CameraType = Enum.CameraType.Scriptable
 	workspace.FallenPartsDestroyHeight = 0/0
-    getRoot(char).Position = Vector3.yAxis * archive
+	getRoot(char).Position = Vector3.yAxis * archive
 	task.wait(plr:GetNetworkPing())
 	workspace.FallenPartsDestroyHeight = archive
 	repeat task.wait() until not char.Parent or not hum.Parent or (hum and hum.Health <= 0)
@@ -5066,19 +5066,19 @@ end)
 onDied()
 
 local booly = {
-    truthy = { ["true"] = true, ["t"] = true, ["1"] = true, ["yes"] = true, ["y"] = true, ["on"] = true, ["enable"] = true, ["enabled"] = true },
-    falsy = { ["false"] = true, ["f"] = true, ["0"] = true, ["no"] = true, ["n"] = true, ["off"] = true, ["disable"] = true, ["disabled"] = true },
+	truthy = { ["true"] = true, ["t"] = true, ["1"] = true, ["yes"] = true, ["y"] = true, ["on"] = true, ["enable"] = true, ["enabled"] = true },
+	falsy = { ["false"] = true, ["f"] = true, ["0"] = true, ["no"] = true, ["n"] = true, ["off"] = true, ["disable"] = true, ["disabled"] = true },
 }
 
 function parseBoolean(raw, default)
-    raw = tostring(raw):lower()
-    if booly.truthy[raw] then return true end
-    if booly.falsy[raw] then return false end
-    return default or false
+	raw = tostring(raw):lower()
+	if booly.truthy[raw] then return true end
+	if booly.falsy[raw] then return false end
+	return default or false
 end
 
 function getstring(begin, args)
-    return table.concat(args or cargs, " ", begin)
+	return table.concat(args or cargs, " ", begin)
 end
 
 findCmd=function(cmd_name)
@@ -6973,25 +6973,25 @@ if ok and typeof(data) == "CFrame" then
 end
 ]]
 addcmd("rejoin", {"rj"}, function(args, speaker)
-    local data = nil
-    if parseBoolean(args[1], false) == true then
-        if queueteleport then
-            if speaker.Character then
-                data = speaker.Character:GetPivot()
-                queueteleport(teleportRespawnHandler)
-            end
-        else
-            notify("Incompatible Exploit", "Your exploit does not support this argument (missing queue_on_teleport)")
-        end
-    end
+	local data = nil
+	if parseBoolean(args[1], false) == true then
+		if queueteleport then
+			if speaker.Character then
+				data = speaker.Character:GetPivot()
+				queueteleport(teleportRespawnHandler)
+			end
+		else
+			notify("Incompatible Exploit", "Your exploit does not support this argument (missing queue_on_teleport)")
+		end
+	end
 
-    if #Players:GetPlayers() <= 1 then
-        Players.LocalPlayer:Kick("\nRejoining...")
-        task.wait(0.3)
-        TeleportService:Teleport(PlaceId, Players.LocalPlayer, data)
-    else
-        TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer, nil, data)
-    end
+	if #Players:GetPlayers() <= 1 then
+		Players.LocalPlayer:Kick("\nRejoining...")
+		task.wait(0.3)
+		TeleportService:Teleport(PlaceId, Players.LocalPlayer, data)
+	else
+		TeleportService:TeleportToPlaceInstance(PlaceId, JobId, Players.LocalPlayer, nil, data)
+	end
 end)
 
 addcmd("inviteprompt", {}, function(args, speaker)
@@ -7040,40 +7040,40 @@ end)
 local NoclipParts = {}
 local Noclipping = nil
 addcmd("noclip", {}, function(args, speaker)
-    pcall(function() Noclipping:Disconnect() end)
-    Clip = false
-    task.wait(0.1)
-    NoclipParts = {}
-    Noclipping = RunService.Stepped:Connect(function()
-        if Clip == false and speaker.Character ~= nil then
-            for _, child in pairs(speaker.Character:GetDescendants()) do
-                if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
-                    child.CanCollide = false
-                    NoclipParts[child] = true
-                end
-            end
-        end
-    end)
-    if args[1] and args[1] == "nonotify" then return end
-    notify("Noclip", "Noclip Enabled")
+	pcall(function() Noclipping:Disconnect() end)
+	Clip = false
+	task.wait(0.1)
+	NoclipParts = {}
+	Noclipping = RunService.Stepped:Connect(function()
+		if Clip == false and speaker.Character ~= nil then
+			for _, child in pairs(speaker.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+					NoclipParts[child] = true
+				end
+			end
+		end
+	end)
+	if args[1] and args[1] == "nonotify" then return end
+	notify("Noclip", "Noclip Enabled")
 end)
 
 addcmd("unnoclip", {"clip"}, function(args, speaker)
-    pcall(function() Noclipping:Disconnect() end)
-    Clip = true
-    task.wait(0.1)
-    for child, _ in pairs(NoclipParts) do
-        if typeof(child) == "Instance" and child:IsA("BasePart") and child.Parent then
-            child.CanCollide = true
-        end
-    end
-    NoclipParts = {}
-    if args[1] and args[1] == "nonotify" then return end
-    notify("Noclip", "Noclip Disabled")
+	pcall(function() Noclipping:Disconnect() end)
+	Clip = true
+	task.wait(0.1)
+	for child, _ in pairs(NoclipParts) do
+		if typeof(child) == "Instance" and child:IsA("BasePart") and child.Parent then
+			child.CanCollide = true
+		end
+	end
+	NoclipParts = {}
+	if args[1] and args[1] == "nonotify" then return end
+	notify("Noclip", "Noclip Disabled")
 end)
 
 addcmd("togglenoclip", {}, function(args, speaker)
-    execCmd(Clip and "noclip" or "unnoclip")
+	execCmd(Clip and "noclip" or "unnoclip")
 end)
 
 FLYING = false
@@ -7379,7 +7379,7 @@ local function velfly(speaker)
 		if dir.Magnitude > 0.001 then
 			local cf = cam.CFrame
 			vel = (cf.RightVector * dir:Dot(cf.RightVector) + cf.LookVector * dir:Dot(cf.LookVector))
-			if vel.Magnitude > 0.001 then vel = vel.Unit * velFlySpeed end
+			if vel.Magnitude > 0.001 then vel = vel.Unit * velflyspeed end
 		end
 
 		hrp.Velocity = vel + Vector3.new(0, workspace.Gravity * dt, 0)
@@ -7459,7 +7459,7 @@ addcmd('float', {'platform'},function(args, speaker)
 	local pchar = speaker.Character
 	floatName = randomString()
 	floating = true
-	
+
 	if pchar and not pchar:FindFirstChild(floatName) then
 		task.spawn(function()
 			local floatPoint = -3.1
@@ -7469,9 +7469,9 @@ addcmd('float', {'platform'},function(args, speaker)
 			floatPart.Transparency = 1
 			floatPart.Size = Vector3.new(2, 0.2, 1.5)
 			floatPart.Anchored = true
-			
+
 			notify('Float', 'Started floating (Q = down & E = up)')
-			
+
 			beganListener = UserInputService.InputBegan:Connect(function(key, processed)
 				if processed then return end
 
@@ -7492,7 +7492,7 @@ addcmd('float', {'platform'},function(args, speaker)
 					floatPoint -= 1.5
 				end
 			end)
-			
+
 			floatDied = speaker.Character:FindFirstChildOfClass('Humanoid').Died:Connect(function()
 				floatingFunc:Disconnect()
 				floatPart:Destroy()
@@ -7973,21 +7973,21 @@ addcmd("savegame", {"saveplace"}, function(args, speaker)
 end)
 
 addcmd("clearerror", {"clearerrors"}, function(args, speaker)
-    GuiService:ClearError()
+	GuiService:ClearError()
 end)
 
 addcmd("antigameplaypaused", {}, function(args, speaker)
-    pcall(function() networkPaused:Disconnect() end)
-    networkPaused = COREGUI.RobloxGui.ChildAdded:Connect(function(obj)
-        if obj.Name == "CoreScripts/NetworkPause" then
-            obj:Destroy()
-        end
-    end)
-    COREGUI.RobloxGui["CoreScripts/NetworkPause"]:Destroy()
+	pcall(function() networkPaused:Disconnect() end)
+	networkPaused = COREGUI.RobloxGui.ChildAdded:Connect(function(obj)
+		if obj.Name == "CoreScripts/NetworkPause" then
+			obj:Destroy()
+		end
+	end)
+	COREGUI.RobloxGui["CoreScripts/NetworkPause"]:Destroy()
 end)
 
 addcmd("unantigameplaypaused", {}, function(args, speaker)
-    networkPaused:Disconnect()
+	networkPaused:Disconnect()
 end)
 
 addcmd('clientantikick',{'antikick'},function(args, speaker)
@@ -7996,17 +7996,17 @@ addcmd('clientantikick',{'antikick'},function(args, speaker)
 	end
 	local LocalPlayer = Players.LocalPlayer
 	local oldNamecall; oldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
-    	local method = getnamecallmethod and getnamecallmethod() or ""
-    	if select(1, ...) == LocalPlayer and method == "Kick" or method == "kick" then
-        	return nil
-    	end
-    	return oldNamecall(...)
+		local method = getnamecallmethod and getnamecallmethod() or ""
+		if select(1, ...) == LocalPlayer and method == "Kick" or method == "kick" then
+			return nil
+		end
+		return oldNamecall(...)
 	end))
 	hookfunction(LocalPlayer.Kick, newcclosure(function(self, _)
-    	if self ~= lp then
-        	error("Expected ':' not '.' calling member function Kick", 2)
-    	end
-    	return nil
+		if self ~= lp then
+			error("Expected ':' not '.' calling member function Kick", 2)
+		end
+		return nil
 	end))
 
 	notify('Client Antikick','Client anti kick is now active (only effective on localscript kick)')
@@ -8200,10 +8200,10 @@ addcmd('noesp',{'unesp','unespteam'},function(args, speaker)
 end)
 
 addcmd("esptransparency", {}, function(args, speaker)
-    espTransparency = tonumber(args[1]) or 0.3
-    if ESPenabled then execCmd("esp") end
-    if CHMSenabled then execCmd("chams") end
-    updatesaves()
+	espTransparency = tonumber(args[1]) or 0.3
+	if ESPenabled then execCmd("esp") end
+	if CHMSenabled then execCmd("chams") end
+	updatesaves()
 end)
 
 local espParts = {}
@@ -8912,22 +8912,22 @@ end)
 
 local antiAfkCon = nil
 addcmd("antiafk", {"antiidle"}, function(args, speaker)
-    if getconnections then
-        for _, c in getconnections(speaker.Idled) do
-            pcall(function() c:Disable() end) -- supposed to "pause" it
-            pcall(function() c:Disconnect() end) -- supposed to disconnect it
-        end
-    end
+	if getconnections then
+		for _, c in getconnections(speaker.Idled) do
+			pcall(function() c:Disable() end) -- supposed to "pause" it
+			pcall(function() c:Disconnect() end) -- supposed to disconnect it
+		end
+	end
 
-    pcall(function() antiAfkCon:Disconnect() end)
-    antiAfkCon = speaker.Idled:Connect(function()
-        local VirtualInputManager = Instance.new("VirtualInputManager")
-        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
-        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
-        VirtualInputManager:Destroy()
-    end)
+	pcall(function() antiAfkCon:Disconnect() end)
+	antiAfkCon = speaker.Idled:Connect(function()
+		local VirtualInputManager = Instance.new("VirtualInputManager")
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+		VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+		VirtualInputManager:Destroy()
+	end)
 
-    if not (args[1] and tostring(args[1]) == "nonotify") then notify("Anti Idle", "Anti idle is enabled") end
+	if not (args[1] and tostring(args[1]) == "nonotify") then notify("Anti Idle", "Anti idle is enabled") end
 end)
 
 addcmd("datalimit", {}, function(args, speaker)
@@ -9160,52 +9160,52 @@ addcmd("goto", {"to"}, function(args, speaker)
 end)
 
 addcmd("tweengoto", {"tgoto", "tto", "tweento"}, function(args, speaker)
-    local character = speaker and speaker.Character
-    local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
+	local character = speaker and speaker.Character
+	local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
 
-    local oldState = humanoid and humanoid:GetStateEnabled(Enum.HumanoidStateType.Seated)
-    if humanoid then humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false) end
+	local oldState = humanoid and humanoid:GetStateEnabled(Enum.HumanoidStateType.Seated)
+	if humanoid then humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false) end
 
-    local players = getPlayer(args[1], speaker)
-    for _, v in pairs(players) do
-        if Players[v].Character ~= nil then
-            if humanoid and humanoid.SeatPart then
-                humanoid.Sit = false
-                task.wait(0.1)
-            end
-            TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {
-                CFrame = getRoot(Players[v].Character):GetPivot() + Vector3.new(3, 1, 0)
-            }):Play()
-        end
-    end
-    execCmd("breakvelocity")
+	local players = getPlayer(args[1], speaker)
+	for _, v in pairs(players) do
+		if Players[v].Character ~= nil then
+			if humanoid and humanoid.SeatPart then
+				humanoid.Sit = false
+				task.wait(0.1)
+			end
+			TweenService:Create(getRoot(speaker.Character), TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {
+				CFrame = getRoot(Players[v].Character):GetPivot() + Vector3.new(3, 1, 0)
+			}):Play()
+		end
+	end
+	execCmd("breakvelocity")
 
-    if type(oldState) == "boolean" then
-        humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, oldState)
-    end
+	if type(oldState) == "boolean" then
+		humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, oldState)
+	end
 end)
 
 addcmd("vehiclegoto", {"vgoto", "vtp", "vehicletp"}, function(args, speaker)
-    local character = speaker.Character
-    local humanoid = if character then character:FindFirstChildOfClass("Humanoid") else nil
-    if not humanoid then return end
+	local character = speaker.Character
+	local humanoid = if character then character:FindFirstChildOfClass("Humanoid") else nil
+	if not humanoid then return end
 
-    local seat = humanoid.SeatPart
-    local vehicleModel = if seat then seat:FindFirstAncestorWhichIsA("Model") else nil
-    if vehicleModel == nil then
-        notify("Vehicle Goto", "Make sure you're sitting in a vehicle.")
-        return
-    end
+	local seat = humanoid.SeatPart
+	local vehicleModel = if seat then seat:FindFirstAncestorWhichIsA("Model") else nil
+	if vehicleModel == nil then
+		notify("Vehicle Goto", "Make sure you're sitting in a vehicle.")
+		return
+	end
 
-    for _, v in getPlayer(args[1], speaker) do
-        if Players[v].Character == nil then continue end
+	for _, v in getPlayer(args[1], speaker) do
+		if Players[v].Character == nil then continue end
 
-        local root = getRoot(Players[v].Character)
-        if root == nil then continue end
+		local root = getRoot(Players[v].Character)
+		if root == nil then continue end
 
-        vehicleModel:PivotTo(root:GetPivot())
-        break
-    end
+		vehicleModel:PivotTo(root:GetPivot())
+		break
+	end
 end)
 
 addcmd('pulsetp',{'ptp'},function(args, speaker)
@@ -9513,11 +9513,11 @@ addcmd('thaw',{'unfreeze','unfr'},function(args, speaker)
 end)
 
 addcmd("anchor", {}, function(args, speaker)
-    getRoot(speaker.Character).Anchored = true
+	getRoot(speaker.Character).Anchored = true
 end)
 
 addcmd("unanchor", {}, function(args, speaker)
-    getRoot(speaker.Character).Anchored = false
+	getRoot(speaker.Character).Anchored = false
 end)
 
 oofing = false
@@ -10342,52 +10342,52 @@ addcmd('tweentpposition',{'ttppos'},function(args, speaker)
 end)
 
 addcmd("offset", {}, function(args, speaker)
-    if #args < 3 then return end
-    speaker.Character:TranslateBy(Vector3.new(tonumber(args[1]) or 0, tonumber(args[2]) or 0, tonumber(args[3]) or 0))
+	if #args < 3 then return end
+	speaker.Character:TranslateBy(Vector3.new(tonumber(args[1]) or 0, tonumber(args[2]) or 0, tonumber(args[3]) or 0))
 end)
 
 addcmd("tweenoffset", {"toffset"}, function(args, speaker)
-    if #args < 3 then return end
-    local tpX, tpY, tpZ = tonumber(args[1]), tonumber(args[2]), tonumber(args[3])
-    local root = getRoot(speaker.Character)
-    local pos = root.Position + Vector3.new(tpX, tpY, tpZ)
-    TweenService:Create(root, TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = CFrame.new(pos)}):Play()
-    breakVelocity()
+	if #args < 3 then return end
+	local tpX, tpY, tpZ = tonumber(args[1]), tonumber(args[2]), tonumber(args[3])
+	local root = getRoot(speaker.Character)
+	local pos = root.Position + Vector3.new(tpX, tpY, tpZ)
+	TweenService:Create(root, TweenInfo.new(tweenSpeed, Enum.EasingStyle.Linear), {CFrame = CFrame.new(pos)}):Play()
+	breakVelocity()
 end)
 
 addcmd("clickteleport", {}, function(args, speaker)
-    if speaker ~= Players.LocalPlayer then return end
-    notify("Click TP", "Go to Settings > Keybinds > Add to set up click teleport")
+	if speaker ~= Players.LocalPlayer then return end
+	notify("Click TP", "Go to Settings > Keybinds > Add to set up click teleport")
 end)
 
 addcmd("mouseteleport", {"mousetp"}, function(args, speaker)
-    local root = getRoot(speaker.Character)
-    local pos = IYMouse.Hit
-    if root and pos then
-        root.CFrame = CFrame.new(pos.X, pos.Y + 3, pos.Z, select(4, root.CFrame:components()))
-        breakVelocity()
-    end
+	local root = getRoot(speaker.Character)
+	local pos = IYMouse.Hit
+	if root and pos then
+		root.CFrame = CFrame.new(pos.X, pos.Y + 3, pos.Z, select(4, root.CFrame:components()))
+		breakVelocity()
+	end
 end)
 
 addcmd("tptool", {"teleporttool"}, function(args, speaker)
-    local TpTool = Instance.new("Tool")
-    TpTool.Name = "Teleport Tool"
-    TpTool.RequiresHandle = false
-    TpTool.Parent = speaker:FindFirstChildOfClass("Backpack")
-    TpTool.Activated:Connect(function()
-        local root = getRoot(speaker.Character)
-        local pos = IYMouse.Hit
-        if not root or not pos then return end
-        root.CFrame = CFrame.new(pos.X, pos.Y + 3, pos.Z, select(4, root.CFrame:components()))
-        breakVelocity()
-    end)
+	local TpTool = Instance.new("Tool")
+	TpTool.Name = "Teleport Tool"
+	TpTool.RequiresHandle = false
+	TpTool.Parent = speaker:FindFirstChildOfClass("Backpack")
+	TpTool.Activated:Connect(function()
+		local root = getRoot(speaker.Character)
+		local pos = IYMouse.Hit
+		if not root or not pos then return end
+		root.CFrame = CFrame.new(pos.X, pos.Y + 3, pos.Z, select(4, root.CFrame:components()))
+		breakVelocity()
+	end)
 end)
 
 addcmd("thru", {}, function(args, speaker)
-    local root = getRoot(speaker.Character)
-    local num = tonumber(args[1]) or 5
-    local pos = root.CFrame.Position + (root.CFrame.LookVector * num)
-    root.CFrame = CFrame.new(pos, pos + root.CFrame.LookVector)
+	local root = getRoot(speaker.Character)
+	local num = tonumber(args[1]) or 5
+	local pos = root.CFrame.Position + (root.CFrame.LookVector * num)
+	root.CFrame = CFrame.new(pos, pos + root.CFrame.LookVector)
 end)
 
 addcmd('clickdelete',{},function(args, speaker)
@@ -10630,26 +10630,26 @@ addcmd('oldconsole',{},function(args, speaker)
 end)
 
 addcmd("explorer", {"dex"}, function(args, speaker)
-    notify("Loading", "Hold on a sec")
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/uncustomizable/customstuff/refs/heads/main/dex.lua"))()
+	notify("Loading", "Hold on a sec")
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/uncustomizable/customstuff/refs/heads/main/dex.lua"))()
 end)
 
 addcmd("moondex", {"mdex"}, function(args, speaker)
-    notify("Loading", "Hold on a sec")
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
+	notify("Loading", "Hold on a sec")
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
 end)
 
 addcmd("remotespy", {"rspy", "cobalt", "cspy"}, function(args, speaker)
-    notify("Loading", "Hold on a sec")
-    -- Full credit to notpoiu, creator of Cobalt
-    loadstring(game:HttpGet("https://gitlab.com/upio/cobalt/-/releases/permalink/latest/downloads/Cobalt.luau"))()
+	notify("Loading", "Hold on a sec")
+	-- Full credit to notpoiu, creator of Cobalt
+	loadstring(game:HttpGet("https://gitlab.com/upio/cobalt/-/releases/permalink/latest/downloads/Cobalt.luau"))()
 end)
 
 addcmd("simplespy", {"sspy"}, function(args, speaker)
-    notify("Loading", "Hold on a sec")
-    -- Full credit to exx, creator of SimpleSpy
-    -- also thanks to Amity for fixing
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
+	notify("Loading", "Hold on a sec")
+	-- Full credit to exx, creator of SimpleSpy
+	-- also thanks to Amity for fixing
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/SimpleSpyV3/main.lua"))()
 end)
 
 addcmd('audiologger',{'alogger'},function(args, speaker)
@@ -10804,33 +10804,33 @@ addcmd("unchatwindow", {"nochatwindow"}, function(args, speaker)
 end)
 
 addcmd("darkchat", {}, function(args, speaker)
-    local BCC = TextChatService:FindFirstChildOfClass("BubbleChatConfiguration")
-    local CWC = TextChatService:FindFirstChildOfClass("ChatWindowConfiguration")
-    local CIBC = TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration")
-    if BCC then
-        BCC.Enabled = true
-        BCC.BackgroundColor3 = Color3.fromRGB()
-        BCC.BackgroundTransparency = 0.3
-        BCC.TailVisible = true
-        BCC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
-    end
-    if CWC then
-        CWC.Enabled = true
-        CWC.BackgroundColor3 = Color3.fromRGB()
-        CWC.BackgroundTransparency = 0.3
-        CWC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
-        CWC.TextStrokeColor3 = Color3.fromRGB()
-        CWC.TextStrokeTransparency = 0.5
-    end
-    if CIBC then
-        CIBC.Enabled = true
-        CIBC.BackgroundColor3 = Color3.fromRGB()
-        CIBC.BackgroundTransparency = 0.5
-        CIBC.PlaceholderColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
-        CIBC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
-        CIBC.TextStrokeColor3 = Color3.fromRGB()
-        CIBC.TextStrokeTransparency = 0.5
-    end
+	local BCC = TextChatService:FindFirstChildOfClass("BubbleChatConfiguration")
+	local CWC = TextChatService:FindFirstChildOfClass("ChatWindowConfiguration")
+	local CIBC = TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration")
+	if BCC then
+		BCC.Enabled = true
+		BCC.BackgroundColor3 = Color3.fromRGB()
+		BCC.BackgroundTransparency = 0.3
+		BCC.TailVisible = true
+		BCC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
+	end
+	if CWC then
+		CWC.Enabled = true
+		CWC.BackgroundColor3 = Color3.fromRGB()
+		CWC.BackgroundTransparency = 0.3
+		CWC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
+		CWC.TextStrokeColor3 = Color3.fromRGB()
+		CWC.TextStrokeTransparency = 0.5
+	end
+	if CIBC then
+		CIBC.Enabled = true
+		CIBC.BackgroundColor3 = Color3.fromRGB()
+		CIBC.BackgroundTransparency = 0.5
+		CIBC.PlaceholderColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
+		CIBC.TextColor3 = Color3.fromRGB(0xFF, 0xFF, 0xFF)
+		CIBC.TextStrokeColor3 = Color3.fromRGB()
+		CIBC.TextStrokeTransparency = 0.5
+	end
 end)
 
 addcmd('blockhead',{},function(args, speaker)
@@ -12116,31 +12116,31 @@ end)
 
 tpwalkStack = 0
 addcmd("teleportwalk", {"tpwalk"}, function(args, speaker)
-    pcall(function() tpwalking:Disconnect() end)
+	pcall(function() tpwalking:Disconnect() end)
 
-    local character = speaker.Character
-    local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
-    local speed = (args[1] and isNumber(args[1])) and tonumber(args[1]) or 1
+	local character = speaker.Character
+	local humanoid = character and character:FindFirstChildWhichIsA("Humanoid")
+	local speed = (args[1] and isNumber(args[1])) and tonumber(args[1]) or 1
 
-    if parseBoolean(args[2]) then
-        tpwalkStack = tpwalkStack + speed
-    end
+	if parseBoolean(args[2]) then
+		tpwalkStack = tpwalkStack + speed
+	end
 
-    tpwalking = RunService.Heartbeat:Connect(function(delta)
-        if not (character and humanoid and humanoid.Parent) then
-            tpwalking:Disconnect()
-            return
-        end
+	tpwalking = RunService.Heartbeat:Connect(function(delta)
+		if not (character and humanoid and humanoid.Parent) then
+			tpwalking:Disconnect()
+			return
+		end
 
-        if humanoid.MoveDirection.Magnitude > 0 then
-            character:TranslateBy(humanoid.MoveDirection * (speed + tpwalkStack) * delta * 10)
-        end
-    end)
+		if humanoid.MoveDirection.Magnitude > 0 then
+			character:TranslateBy(humanoid.MoveDirection * (speed + tpwalkStack) * delta * 10)
+		end
+	end)
 end)
 
 addcmd("unteleportwalk", {"untpwalk"}, function(args, speaker)
-    tpwalkStack = 0
-    tpwalking:Disconnect()
+	tpwalkStack = 0
+	tpwalking:Disconnect()
 end)
 
 function bring(speaker,target,fast)
@@ -12438,11 +12438,11 @@ addcmd('hitbox',{},function(args, speaker)
 end)
 
 addcmd("hitboxes", {}, function(args, speaker)
-    settings():GetService("RenderSettings").ShowBoundingBoxes = true
+	settings():GetService("RenderSettings").ShowBoundingBoxes = true
 end)
 
 addcmd("unhitboxes", {}, function(args, speaker)
-    settings():GetService("RenderSettings").ShowBoundingBoxes = false
+	settings():GetService("RenderSettings").ShowBoundingBoxes = false
 end)
 
 addcmd('stareat',{'stare'},function(args, speaker)
@@ -12563,75 +12563,75 @@ addcmd("unstaffwatch", {}, function(args, speaker)
 end)
 
 local function playerGroups()
-    local players = Players:GetPlayers()
-    local graph = {}
-    local seen = {}
-    local groups = {}
+	local players = Players:GetPlayers()
+	local graph = {}
+	local seen = {}
+	local groups = {}
 
-    for _, p in ipairs(players) do
-        graph[p] = {}
-    end
+	for _, p in ipairs(players) do
+		graph[p] = {}
+	end
 
-    for i = 1, #players do
-        for j = i + 1, #players do
-            local p1 = players[i]
-            local p2 = players[j]
+	for i = 1, #players do
+		for j = i + 1, #players do
+			local p1 = players[i]
+			local p2 = players[j]
 
-            local success, result = pcall(function()
-                return p1:IsFriendsWithAsync(p2.UserId)
-            end)
+			local success, result = pcall(function()
+				return p1:IsFriendsWithAsync(p2.UserId)
+			end)
 
-            if success and result then
-                table.insert(graph[p1], p2)
-                table.insert(graph[p2], p1)
-            end
-        end
-    end
+			if success and result then
+				table.insert(graph[p1], p2)
+				table.insert(graph[p2], p1)
+			end
+		end
+	end
 
-    local function dfs(player, group)
-        seen[player] = true
-        table.insert(group, player)
+	local function dfs(player, group)
+		seen[player] = true
+		table.insert(group, player)
 
-        for _, possible in ipairs(graph[player]) do
-            if not seen[possible] then
-                dfs(possible, group)
-            end
-        end
-    end
+		for _, possible in ipairs(graph[player]) do
+			if not seen[possible] then
+				dfs(possible, group)
+			end
+		end
+	end
 
-    for _, p in ipairs(players) do
-        if not seen[p] then
-            local group = {}
-            dfs(p, group)
-            table.insert(groups, group)
-        end
-    end
+	for _, p in ipairs(players) do
+		if not seen[p] then
+			local group = {}
+			dfs(p, group)
+			table.insert(groups, group)
+		end
+	end
 
-    return groups
+	return groups
 end
 
 addcmd("findfriendgroups", {}, function(args, speaker)
-    notify("Checking Players", "This might take a while (slow function)")
+	notify("Checking Players", "This might take a while (slow function)")
 
-    local groups = playerGroups()
-    local playerList = StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList)
+	local groups = playerGroups()
+	local playerList = StarterGui:GetCoreGuiEnabled(Enum.CoreGuiType.PlayerList)
 
-    local result = ""
-    local index = 1
-    local found = 0
+	local result = ""
+	local index = 1
+	local found = 0
 
-    for _, group in ipairs(groups) do
-        if #group == 1 then continue end
-        local names = {}
-        for _, player in ipairs(group) do
-            table.insert(names, playerList and player.DisplayName or player.Name)
-        end
-        result = result .. index .. ". " .. table.concat(names, ", ") .. "\n"
-        index = index + 1
-        found = found + 1
-    end
+	for _, group in ipairs(groups) do
+		if #group == 1 then continue end
+		local names = {}
+		for _, player in ipairs(group) do
+			table.insert(names, playerList and player.DisplayName or player.Name)
+		end
+		result = result .. index .. ". " .. table.concat(names, ", ") .. "\n"
+		index = index + 1
+		found = found + 1
+	end
 
-    createPopup("Friend Groups", found == 0 and "None" or result)
+	createPopup("Friend Groups", found == 0 and "None" or result)
 end)
 
 addcmd('removeterrain',{'rterrain','noterrain'},function(args, speaker)
@@ -13153,8 +13153,8 @@ addcmd('removecmd',{'deletecmd'},function(args, speaker)
 end)
 
 addcmd("debug", {}, function(args, speaker)
-    _G.IY_DEBUG = parseBoolean(args[1], true)
-    return _G.IY_DEBUG and "Enabled" or "Disabled"
+	_G.IY_DEBUG = parseBoolean(args[1], true)
+	return _G.IY_DEBUG and "Enabled" or "Disabled"
 end)
 
 if IsOnMobile then
@@ -13285,8 +13285,8 @@ if not isLegacyChat then
 			local player = Players:GetPlayerByUserId(textChatMessage.TextSource.UserId)
 			if not player then return end
 
-            local message = textChatMessage.Text
-            pcall(function() if textChatMessage.WasRewritten == true then message = "(rephrased) " .. textChatMessage.RewrittenText end end)
+			local message = textChatMessage.Text
+			pcall(function() if textChatMessage.WasRewritten == true then message = "(rephrased) " .. textChatMessage.RewrittenText end end)
 
 			if logsEnabled == true then
 				CreateLabel(player.Name, message)
@@ -13446,19 +13446,19 @@ task.spawn(function()
 end)
 
 task.spawn(function()
-    task.wait()
-    pcall(function()
-        Credits:TweenPosition(UDim2.new(0, 0, 0.9, 0), "Out", "Quart", 0.2)
-        Logo:TweenSizeAndPosition(UDim2.new(0, 175, 0, 175), UDim2.new(0, 37, 0, 45), "Out", "Quart", 0.3)
-        task.wait(1)
-        local OutInfo = TweenInfo.new(1.6809, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
-        TweenService:Create(Logo, OutInfo, {ImageTransparency = 1}):Play()
-        TweenService:Create(IntroBackground, OutInfo, {BackgroundTransparency = 1}):Play()
-        Credits:TweenPosition(UDim2.new(0, 0, 0.9, 30), "Out", "Quart", 0.2)
-        task.wait(0.2)
-    end)
-    Logo:Destroy()
-    Credits:Destroy()
-    IntroBackground:Destroy()
-    minimizeHolder()
+	task.wait()
+	pcall(function()
+		Credits:TweenPosition(UDim2.new(0, 0, 0.9, 0), "Out", "Quart", 0.2)
+		Logo:TweenSizeAndPosition(UDim2.new(0, 175, 0, 175), UDim2.new(0, 37, 0, 45), "Out", "Quart", 0.3)
+		task.wait(1)
+		local OutInfo = TweenInfo.new(1.6809, Enum.EasingStyle.Sine, Enum.EasingDirection.Out, 0, false, 0)
+		TweenService:Create(Logo, OutInfo, {ImageTransparency = 1}):Play()
+		TweenService:Create(IntroBackground, OutInfo, {BackgroundTransparency = 1}):Play()
+		Credits:TweenPosition(UDim2.new(0, 0, 0.9, 30), "Out", "Quart", 0.2)
+		task.wait(0.2)
+	end)
+	Logo:Destroy()
+	Credits:Destroy()
+	IntroBackground:Destroy()
+	minimizeHolder()
 end)
