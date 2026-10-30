@@ -7427,8 +7427,6 @@ addcmd('cframefly', {'cfly'}, function(args, speaker)
 
 	if CFloop then CFloop:Disconnect() end
 
-	hum.PlatformStand = true
-
 	local flyPos = hrp.Position
 	local rot = hrp.CFrame - hrp.CFrame.Position
 
@@ -7438,9 +7436,32 @@ addcmd('cframefly', {'cfly'}, function(args, speaker)
 			return
 		end
 
-		hrp.AssemblyLinearVelocity  = Vector3.zero
+		hrp.AssemblyLinearVelocity = Vector3.zero
 		hrp.AssemblyAngularVelocity = Vector3.zero
-		flyPos = flyPos + hum.MoveDirection * CFspeed * dt
+
+		local maxStep = CFspeed * dt * 2 + 1
+		if (hrp.Position - flyPos).Magnitude > maxStep then
+			flyPos = hrp.Position
+		end
+
+		local md = hum.MoveDirection
+		if md.Magnitude > 0 then
+			local camCF = workspace.CurrentCamera.CFrame
+			local flatLook = Vector3.new(camCF.LookVector.X, 0, camCF.LookVector.Z)
+			if flatLook.Magnitude < 1e-3 then flatLook = Vector3.new(0, 0, -1) end
+			flatLook = flatLook.Unit
+
+			local flatRight = Vector3.new(camCF.RightVector.X, 0, camCF.RightVector.Z)
+			if flatRight.Magnitude < 1e-3 then flatRight = Vector3.new(1, 0, 0) end
+			flatRight = flatRight.Unit
+
+			local moveVec = camCF.LookVector * md:Dot(flatLook) + flatRight * md:Dot(flatRight)
+
+			if moveVec.Magnitude > 1e-3 then
+				moveVec = moveVec.Unit
+				flyPos = flyPos + moveVec * CFspeed * dt
+			end
+		end
 
 		hrp.CFrame = CFrame.new(flyPos) * rot
 	end)
