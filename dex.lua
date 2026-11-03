@@ -14122,35 +14122,6 @@ return search]==]
 				showMoreInfo.OnInput:Connect(function()
 					Settings.ScriptViewer.ShowMoreInfo = showMoreInfo.Toggled
 				end)
-
-				AddSeperator("Decompiler")
-				AddText("If executor does not support decompile, it will use the fallback option.")
-				AddText("'getbytecode' is mandatory to use fallback decompilers.")
-				local decompilerOption = {"Konstant", "AdvancedDecompiler", "Shiny"}
-				local decompiler = AddDropdown("Decompiler Fallback", decompilerOption, Settings.Decompiler.DecompilerFallback, false, 125)
-				decompiler.OnSelect:Connect(function()
-					Settings.Decompiler.DecompilerFallback = decompiler.Selected
-				end)
-
-				local ShinyPort = AddTextbox("Shiny Decompiler Port", tostring(Settings.Decompiler.ShinyDecompilerPort), 50)
-				ShinyPort.FocusLost:Connect(function()
-					local portinput = tonumber(ShinyPort.Text)
-					if not portinput then
-						ShinyPort.Text = Settings.Decompiler.ShinyDecompilerPort
-					else
-						if portinput > 0 and portinput <= 65535 then
-							Settings.Decompiler.ShinyDecompilerPort = portinput
-						else
-							ShinyPort.Text = Settings.Decompiler.ShinyDecompilerPort
-						end
-					end
-				end)
-
-				local preferFallback = AddCheckbox("Prefer Fallback Decompiler", Settings.Decompiler.PreferDecompilerFallback)
-				preferFallback.OnInput:Connect(function()
-					Settings.Decompiler.PreferDecompilerFallback = preferFallback.Toggled
-				end)
-
 				-- Save buttons below
 				local BackgroundreloadButton = Lib.Frame.new()
 				BackgroundreloadButton.Gui.Parent = window.GuiElems.Content
@@ -14314,11 +14285,6 @@ DefaultSettings = (function()
 		Window = {
 			TitleOnMiddle = false,
 			Transparency = .2
-		},
-		Decompiler = {
-			DecompilerFallback = "Konstant", --Konstant, Shiny, AdvancedDecompiler
-			PreferDecompilerFallback = false,
-			ShinyDecompilerPort = 3000,
 		},
 
 		RemoteBlockWriteAttribute = false, -- writes attribute to remote instance if remote is blocked/unblocked
@@ -14736,92 +14702,9 @@ Main = (function()
 			return typeof(decompile) ~= "function" or typeof(getscriptbytecode) == "function" or false
 		end
 
-
-		-- DECOMPILERS
-
-		local AdvancedDecompilerCache
-		pcall(function()
-			AdvancedDecompilerCache = loadstring(game:HttpGet("https://raw.githubusercontent.com/"..Main.GitName.."/Advanced-Decompiler-V3/refs/heads/main/init.lua"))()
-		end)
-
-		local konstant_last_call = 0
-
-		local function KonstantDec(...)
-			-- by lovrewe
-			--warn("No built-in decompiler exists, using Konstant decompiler...")
-			--assert(getscriptbytecode, "Exploit not supported.")
-			local API = "http://api.plusgiant5.com"
-
-			local request = env.request
-
-			local function call(konstantType, scriptPath)
-				local success, bytecode = pcall(env.getscriptbytecode, scriptPath)
-
-				if (not success) then
-					return `-- Failed to get script bytecode, error:\n\n--[[\n{bytecode}\n--]]`
-				end
-
-				local time_elapsed = os.clock() - konstant_last_call
-				if time_elapsed <= .5 then
-					task.wait(.5 - time_elapsed)
-				end
-
-				local httpResult = env.request({
-					Url = API .. konstantType,
-					Body = bytecode,
-					Method = "POST",
-					Headers = {
-						["Content-Type"] = "text/plain"
-					}
-				})
-
-				konstant_last_call = os.clock()
-
-				if (httpResult.StatusCode ~= 200) then
-					return `-- Error occurred while requesting Konstant API, error:\n\n--[[\n{httpResult.Body}\n--]]`
-				else
-					return httpResult.Body
-				end
-			end
-
-			local function konstantDecompile(scriptPath)
-				return call("/konstant/decompile", scriptPath)
-			end
-
-			return konstantDecompile(...)
-		end
-		local ADDec = AdvancedDecompilerCache or function() return "Failed to load Advanced Decompiler" end
-
-		local function ShinyDec(script_instance)
-			if typeof(crypt) ~= "table" then return "-- 'crypt' library is missing!" end
-			local success, result = pcall(function()
-				return game:HttpGet("http://127.0.0.1:"..tostring(Settings.Decompiler.ShinyDecompilerPort))
-			end)
-			if not success then return "-- Shiny decompiler is not active or port is wrong!" end
-
-			local bytecode = getscriptbytecode(script_instance)
-			local encoded = crypt.base64encode(bytecode)
-			return env.request(
-				{
-					Url = "http://127.0.0.1:"..tostring(Settings.Decompiler.ShinyDecompilerPort).."/luau/decompile",
-					Method = "POST",
-					Body = encoded
-				}
-			).Body
-		end
 		env.decompile = function(...)
-			if typeof(decompile) == "function" and Settings.Decompiler.PreferDecompilerFallback == false then
+			if typeof(decompile) == "function" then
 				return decompile(...)
-			elseif typeof(getscriptbytecode) == "function" then
-				local fallbackMode = Settings.Decompiler.DecompilerFallback
-
-				if fallbackMode == "Konstant" then
-					return KonstantDec(...)
-				elseif fallbackMode == "AdvancedDecompiler" then
-					return ADDec(...)
-				elseif  fallbackMode == "Shiny" then
-					return ShinyDec(...)
-				end
 			end
 		end
 
