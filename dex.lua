@@ -1,4 +1,4 @@
-﻿--[[
+--[[
 	Dex++
 	Version 3.0
 	
@@ -44,16 +44,6 @@ cloneref = cloneref or function(ref)
 		end
 	end
 	return f.invalidate
-end
-
-local function profile(name, fn)
-    return function(...)
-        debug.profilebegin(name)
-        local ok, a, b, c = pcall(fn, ...)
-        debug.profileend()
-        if not ok then error(a, 0) end
-        return a, b, c
-    end
 end
 
 local EmbeddedModules = {
@@ -3559,14 +3549,6 @@ return search]==]
 			end
 		end
 	end
-
-    Explorer.Update = profile("Explorer.Update", Explorer.Update)
-    Explorer.Refresh = profile("Explorer.Refresh", Explorer.Refresh)
-    Explorer.PerformUpdate = profile("Explorer.PerformUpdate", Explorer.PerformUpdate)
-    Explorer.PerformRefresh = profile("Explorer.PerformRefresh", Explorer.PerformRefresh)
-    addObject = profile("Explorer.addObject", addObject)
-    removeObject = profile("Explorer.removeObject", removeObject)
-    moveObject = profile("Explorer.moveObject", moveObject)
 
 	return Explorer
 end
